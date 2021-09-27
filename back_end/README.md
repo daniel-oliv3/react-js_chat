@@ -23,3 +23,6 @@ Roda o projeto usando o Nodemon
 
 Socket.IO é uma biblioteca JavaScript para aplicativos da web em tempo real
 ### npm install socket.io
+
+Permite acesso a API
+### npm install cors
