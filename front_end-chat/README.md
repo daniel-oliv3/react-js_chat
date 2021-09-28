@@ -14,3 +14,6 @@ Acessar o diretório do projeto
 
 Rodar o projeto React
 ### npm start
+
+Socket.IO é uma biblioteca JavaScript para aplicativos da web em tempo real
+### npm install socket.io-client
