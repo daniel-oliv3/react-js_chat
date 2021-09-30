@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import socketIOClient from 'socket.io-client';
+
+let socket;
 
 function App() {
 
-  const [logado, setLogado] = useState(false);
+  const ENDPOINT = "http://localhost:8080/";
+
+  const [logado] = useState(false);
   const [nome, setNome] = useState("");
   const [sala, setSala] = useState("");
+
+  useEffect(() => {
+    socket = socketIOClient(ENDPOINT);
+  }, []); 
 
   const conectarSala = () => {
     console.log("Acessou a sala " + sala + " com o usuário " + nome);

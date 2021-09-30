@@ -22,5 +22,5 @@ const server = app.listen(8080, () => {
 io = socket(server, {cors: {origin: "*"}});
 
 io.on("connection", (socket) => {
-    console.log(socket.io);
+    console.log(socket.id);
 });
