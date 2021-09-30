@@ -16,7 +16,13 @@ function App() {
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
-  }, []); 
+  }, []);
+  
+  useEffect(() => {
+    socket.on("receber_mensagem", (dados) => {
+      setListaMensagem([...listaMensagem, dados]);
+    });
+  });
 
   const conectarSala = () => {
     console.log("Acessou a sala " + sala + " com o usuário " + nome);
@@ -37,7 +43,7 @@ function App() {
 
     await socket.emit("enviar_mensagem", conteudoMensagem);
     setListaMensagem([ ...listaMensagem, conteudoMensagem.conteudo]);
-    setListaMensagem("");
+    setListaMensagem();
   }
 
   return (
@@ -61,14 +67,14 @@ function App() {
 
         <button onClick={conectarSala}>Acessar</button>
       </>
-      : 
+      :
       <>
-      {listaMensagem.map((msg, key) => {
-        return (
-          <div key={key}>
-            {msg.nome}: {msg.mensagem}
-          </div>
-        )
+        {listaMensagem.map((msg, key) => {
+          return (
+            <div key={key}>
+              {msg.nome}: {msg.mensagem}
+            </div>
+          )
       })}
         <input type="text" name="mensagem" value={mensagem} placeholder="Mensagem ..." onChange={(texto) => {setMensagem(texto.target.value)}} />
 
